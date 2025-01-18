@@ -27,12 +27,12 @@ export default factories.createCoreController('api::level-hack.level-hack', ({ s
     }
   },
 
-  async find (ctx) {
+
+  // getting by index
+  async findOne (ctx) {
+    const { id } = ctx.params;
     const { data } = await super.find(ctx);
-    const levelsWithoutAnswer = (data as any[]).map(element => {
-      const { answer, ...el } = element;
-      return el
-    })
+    const { answer, ...levelsWithoutAnswer } = data[id];
 
     return levelsWithoutAnswer
   }
