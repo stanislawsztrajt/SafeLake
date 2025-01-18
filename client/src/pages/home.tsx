@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 const Home: FC = () => {
   return (
-    <div>
+    <div className='text-5xl'>
       HOME
     </div>
   )
