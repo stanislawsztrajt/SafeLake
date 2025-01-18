@@ -5,7 +5,7 @@
 import { factories } from '@strapi/strapi'
 
 export default factories.createCoreController('api::level-hack.level-hack', ({ strapi }) => ({
-  // checking is answer, overwriting default function
+  // checking answer, overwriting default function
   async create (ctx) {
     try {
       const { body } = ctx.request
