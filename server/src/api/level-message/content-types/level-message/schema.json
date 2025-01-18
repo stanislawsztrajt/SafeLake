@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "level_messages",
+  "info": {
+    "singularName": "level-message",
+    "pluralName": "level-messages",
+    "displayName": "level_message",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "richtext"
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": [
+        "Łatwy",
+        "Średni",
+        "Trudny"
+      ]
+    },
+    "answer": {
+      "type": "boolean"
+    },
+    "tip": {
+      "type": "richtext"
+    },
+    "real_photo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "level_phones",
+  "info": {
+    "singularName": "level-phone",
+    "pluralName": "level-phones",
+    "displayName": "level_phone",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content_media": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "audios"
+      ]
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": [
+        "Łatwy",
+        "Średni",
+        "Trudny"
+      ]
+    },
+    "content_message": {
+      "type": "text"
+    },
+    "tip": {
+      "type": "richtext"
+    },
+    "answer": {
+      "type": "boolean"
+    }
+  }
+}

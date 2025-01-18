@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "level_hacks",
+  "info": {
+    "singularName": "level-hack",
+    "pluralName": "level-hacks",
+    "displayName": "level_hack",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "question": {
+      "type": "string"
+    },
+    "tip": {
+      "type": "text"
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": [
+        "Łatwy",
+        "Średni",
+        "Trudny"
+      ]
+    },
+    "answer": {
+      "type": "text"
+    }
+  }
+}
