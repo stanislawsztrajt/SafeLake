@@ -13,10 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "question": {
-      "type": "string"
-    },
-    "tip": {
-      "type": "text"
+      "type": "richtext"
     },
     "difficulty": {
       "type": "enumeration",
@@ -28,6 +25,12 @@
     },
     "answer": {
       "type": "text"
+    },
+    "lesson": {
+      "type": "richtext"
+    },
+    "tip": {
+      "type": "richtext"
     }
   }
 }

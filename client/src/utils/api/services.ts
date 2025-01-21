@@ -3,25 +3,25 @@ import { LevelHack, LevelMessage, LevelPhone } from "../types/levels"
 import { Response } from "../types/api";
 
 export const LevelsHackService = {
-  findOne: async () => {
-    const res: Response<LevelHack[]> = await axios.get(import.meta.env.VITE_API_URL + "level-hacks");
+  findOne: async (index: number | string) => {
+    const res: Response<LevelHack> = await axios.get(import.meta.env.VITE_API_URL + `level-hacks/${index}`);
     return res.data
   },
-  checkAnswer: async () => {
-    const res: boolean = await axios.post(import.meta.env.VITE_API_URL + "level-hacks");
-    return res
+  checkAnswer: async (answer: string, id: string | number) => {
+    const res: { data: boolean } = await axios.post(import.meta.env.VITE_API_URL + "level-hacks", { answer, id });
+    return res.data
   }
 }
 
 export const LevelsMessageService = {
-  findOne: async (index: number) => {
+  findOne: async (index: number | string) => {
     const res: Response<LevelMessage> = await axios.get(import.meta.env.VITE_API_URL + `level-messages/${index}`);
     return res.data
   },
 }
 
 export const LevelsPhoneService = {
-  findOne: async (index: number) => {
+  findOne: async (index: number | string) => {
     const res: Response<LevelPhone> = await axios.get(import.meta.env.VITE_API_URL + `level-phones/${index}`);
     return res.data
   },

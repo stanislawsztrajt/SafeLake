@@ -18,6 +18,7 @@ export interface Level {
 export interface LevelHack extends Level {
   question: string
   answer?: string
+  lesson: string
 }
 
 export interface LevelMessage extends Level {

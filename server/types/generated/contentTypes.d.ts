@@ -388,6 +388,7 @@ export interface ApiLevelHackLevelHack extends Struct.CollectionTypeSchema {
     difficulty: Schema.Attribute.Enumeration<
       ['\u0141atwy', '\u015Aredni', 'Trudny']
     >;
+    lesson: Schema.Attribute.RichText;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -395,8 +396,8 @@ export interface ApiLevelHackLevelHack extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    question: Schema.Attribute.String;
-    tip: Schema.Attribute.Text;
+    question: Schema.Attribute.RichText;
+    tip: Schema.Attribute.RichText;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
