@@ -1,16 +1,15 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useQuery } from 'react-query';
 import { LevelsHackService } from '../../utils/api/services';
 import { useParams } from 'react-router';
 import Loading from '../../features/ui/loading';
-import { Link } from 'react-router-dom';
 
 const LevelsHack: FC = () => {
   const { levels_hack_id } = useParams()
   const { data, isLoading } = useQuery(`level-hack ${levels_hack_id}`, () => LevelsHackService.findOne(Number(levels_hack_id) - 1))
   const [answer, setAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
-  
+
   const checkAnswer = async () => {
     const res = await LevelsHackService.checkAnswer(answer, data?.id as number)
     setIsCorrect(res)
@@ -32,7 +31,7 @@ const LevelsHack: FC = () => {
           {data.difficulty}
         </div>
         <form onSubmit={(e) => {
-          e.preventDefault(); 
+          e.preventDefault();
           checkAnswer();
         }}>
           <label htmlFor="">odpowiedź</label>
@@ -40,7 +39,7 @@ const LevelsHack: FC = () => {
           <input type="submit" value="Zatwierdź" />
         </form>
 
-        { 
+        {
           isCorrect ? (
             <div>
               <h2>
@@ -49,7 +48,7 @@ const LevelsHack: FC = () => {
               <a href={`/levels-hack/${Number(levels_hack_id) + 1}`}>Nastepny poziom</a>
               <div dangerouslySetInnerHTML={{ __html: data.lesson }} />
             </div>
-          ) :  
+          ) :
           isCorrect === null ? null :
           <div>Nieoprawna odpowiedz</div>
         }
