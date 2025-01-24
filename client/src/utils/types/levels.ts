@@ -28,6 +28,8 @@ export interface LevelMessage extends Level {
 }
 
 export interface LevelPhone extends Level {
-  content_media: any
+  content_media: {
+    url: string
+  }
   content_message: string
 }

@@ -21,7 +21,8 @@
     "react-query": "^3.39.3",
     "react-router": "^6.28.2",
     "react-router-dom": "^6.28.2",
-    "use-query": "^1.0.2"
+    "use-query": "^1.0.2",
+    "use-sound": "^4.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
