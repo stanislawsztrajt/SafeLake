@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   return (
     <div className='w-full py-6 px-28 bg-pri'>
-      <span className='text-4xl text-white'>SafeLake</span>
+      <Link to={'/'} className='text-4xl text-white'>SafeLake</Link>
     </div>
   )
 }

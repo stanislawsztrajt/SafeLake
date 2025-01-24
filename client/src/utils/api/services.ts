@@ -22,7 +22,7 @@ export const LevelsMessageService = {
 
 export const LevelsPhoneService = {
   findOne: async (index: number | string) => {
-    const res: Response<LevelPhone> = await axios.get(import.meta.env.VITE_API_URL + `level-phones/${index}`);
+    const res: Response<LevelPhone> = await axios.get(import.meta.env.VITE_API_URL + `level-phones/${index}?populate=content_media`);
     return res.data
   },
 }
