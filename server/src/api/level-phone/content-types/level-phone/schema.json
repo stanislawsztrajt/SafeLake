@@ -36,6 +36,9 @@
     },
     "answer": {
       "type": "boolean"
+    },
+    "explanation": {
+      "type": "text"
     }
   }
 }
