@@ -6,11 +6,15 @@ import { LevelsPhoneService } from '../../utils/api/services';
 import { AudioPlayer } from '../../features/levels-phone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
+import AnswerButtons from '../../features/levels-phone/answer-buttons';
+import { LEVELS_PHONE_NUMBER } from '../../utils/constants';
 
-const LevelsPhone: React.FC = () => {
-  const { levels_phone_id } = useParams()
-  const { data, isLoading } = useQuery(`level-phone ${levels_phone_id}`, () => LevelsPhoneService.findOne(Number(levels_phone_id) - 1))
+const LevelPhone: React.FC = () => {
+  const { level_phone_id } = useParams()
+  const { data, isLoading } = useQuery(`level-phone ${level_phone_id}`, () => LevelsPhoneService.findOne(Number(level_phone_id) - 1))
   const [showHint, setShowHint] = useState<boolean>(false)
+  const [showResult, setShowResult] = useState<boolean>(false)
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean>(false)
 
   if (isLoading) {
     return <Loading />
@@ -28,21 +32,31 @@ const LevelsPhone: React.FC = () => {
       </div>
       <div className='flex flex-col items-center w-3/4 pb-20 mx-auto text-sec'>
         <p className='text-4xl font-bold'>Nauka rozpoznawania oszustw poprzez nagrania głosowe</p>
-        <p className='mt-5 text-3xl'>Poziom {levels_phone_id}/9</p>
-        <hr className='w-full h-px my-12 border-0 shadow-sm bg-bgSec' />
+        <p className='mt-5 text-3xl'>Poziom {level_phone_id}/{LEVELS_PHONE_NUMBER}</p>
+        <hr className='hr-default' />
         <AudioPlayer audio={import.meta.env.VITE_API_URL_FOR_AUDIOS + data.content_media.url} />
         <p className='my-10 text-4xl font-semibold'>{data.content_message}</p>
         <div className='text-3xl font-bold text-white'>
-          <button className='p-5 px-20 mr-8 transition duration-200 bg-green-700 rounded-full hover:shadow-inner hover:bg-green-800'>TAK</button>
-          <button className='p-5 px-20 transition duration-200 bg-red-700 rounded-full hover:shadow-inner hover:bg-red-800'>NIE</button>
+          <AnswerButtons
+            correctAnswer={data.answer}
+            setIsAnswerCorrect={setIsAnswerCorrect}
+            showResult={showResult}
+            setShowResult={setShowResult}
+          />
         </div>
-        <button onClick={() => setShowHint(!showHint)} className='p-3 px-24 mt-8 text-2xl transition duration-200 bg-gray-300 rounded-full hover:shadow-inner hover:bg-gray-200'>
-          {showHint ? "Schowaj" : "Uzyskaj"} podpowiedź
+        <p className={`transition-opacity duration-300 font-semibold -mb-6 ${showResult ? "opacity-100 mt-6 text-4xl mb-0" : "opacity-0 invisible"}`}>
+          Twoja odpowiedź jest
+          <span className={`font-bold ${isAnswerCorrect ? 'text-green-700' : 'text-red-700'}`}>
+            {isAnswerCorrect ? ' poprawna' : ' niepoprawna'}
+          </span>!
+        </p>
+        <button onClick={() => setShowHint(!showHint)} className='p-3 px-24 mt-8 text-2xl text-white transition duration-200 rounded-full bg-pri hover:shadow-inner hover:opacity-85'>
+          {showHint ? "Schowaj" : "Uzyskaj"} wskazówkę
         </button>
         {
           showHint &&
             <div className='relative w-3/4 px-16 py-12 mt-10 shadow rounded-3xl bg-bgSec'>
-              <p className='mb-5 text-3xl font-bold'>Podpowiedź do pytania</p>
+              <p className='mb-5 text-3xl font-bold'>Wskazówka do pytania</p>
               <p className='text-2xl'>{data.tip}</p>
               <button onClick={() => setShowHint(false)} className='absolute top-8 right-12'>
                 <FontAwesomeIcon size='2x' icon={faX} />
@@ -54,4 +68,4 @@ const LevelsPhone: React.FC = () => {
   )
 }
 
-export default LevelsPhone;
+export default LevelPhone;

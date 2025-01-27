@@ -17,10 +17,5 @@ export default factories.createCoreController('api::level-phone.level-phone', ({
     const { data } = await super.find(ctx);
     const sortedData = sortByDifficulty(data);
     return sortedData[id]
-  },
-
-  async find() {
-    const { data } = await super.find();
-    return data.length;
   }
 }));

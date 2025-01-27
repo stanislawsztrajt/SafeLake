@@ -2,7 +2,8 @@ import { Route, Routes } from "react-router";
 import Home from './pages/home';
 import LevelsHack from './pages/[levels-hack-id]/levels-hack';
 import LevelsMessage from './pages/levels-message';
-import LevelsPhone from './pages/[levels-phone-id]/levels-phone';
+import LevelPhone from './pages/[level-phone-id]/level-phone';
+import LevelsPhone from "./pages/levels-phone";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Route index Component={Home}></Route>
       <Route path='levels-hack/:levels_hack_id' Component={LevelsHack}></Route>
       <Route path='levels-message' Component={LevelsMessage}></Route>
-      <Route path='levels-phone/:levels_phone_id' Component={LevelsPhone}></Route>
+      <Route path='level-phone/:level_phone_id' Component={LevelPhone}></Route>
+      <Route path='levels-phone' Component={LevelsPhone}></Route>
     </Routes>
   )
 }

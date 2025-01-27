@@ -6,3 +6,7 @@
 body {
   @apply bg-bgPri
 }
+
+.hr-default {
+  @apply w-11/12 h-px my-12 border-0 shadow-sm bg-bgSec
+}

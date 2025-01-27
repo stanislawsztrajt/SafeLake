@@ -31,5 +31,7 @@ export interface LevelPhone extends Level {
   content_media: {
     url: string
   }
+  answer: boolean
   content_message: string
+  explanation: string
 }

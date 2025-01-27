@@ -461,6 +461,7 @@ export interface ApiLevelPhoneLevelPhone extends Struct.CollectionTypeSchema {
     difficulty: Schema.Attribute.Enumeration<
       ['\u0141atwy', '\u015Aredni', 'Trudny']
     >;
+    explanation: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

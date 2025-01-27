@@ -25,4 +25,9 @@ export const LevelsPhoneService = {
     const res: Response<LevelPhone> = await axios.get(import.meta.env.VITE_API_URL + `level-phones/${index}?populate=content_media`);
     return res.data
   },
+
+  find: async () => {
+    const res: Response<Response<LevelPhone[]>> = await axios.get(import.meta.env.VITE_API_URL + `level-phones`);
+    return res.data.data
+  },
 }
