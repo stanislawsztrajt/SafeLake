@@ -3,6 +3,7 @@ import { Navbar } from '../features/ui';
 import { Link } from 'react-router-dom';
 
 const Home: FC = () => {
+
   return (
     <div>
       <Navbar />

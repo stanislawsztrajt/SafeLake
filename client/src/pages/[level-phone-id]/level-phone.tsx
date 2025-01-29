@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { BackButton, Loading, Navbar } from '../../features/ui';
 import { useQuery } from 'react-query';
@@ -8,13 +8,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import AnswerButtons from '../../features/levels-phone/answer-buttons';
 import { LEVELS_PHONE_NUMBER } from '../../utils/constants';
+import { useCookies } from 'react-cookie';
+import { CookieLevelProgress } from '../../utils/types/levels';
 
 const LevelPhone: React.FC = () => {
   const { level_phone_id } = useParams()
   const { data, isLoading } = useQuery(`level-phone ${level_phone_id}`, () => LevelsPhoneService.findOne(Number(level_phone_id) - 1))
+  const [cookies] = useCookies(['phone_progress'])
+
   const [showHint, setShowHint] = useState<boolean>(false)
   const [showResult, setShowResult] = useState<boolean>(false)
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean>(false)
+  const [givenAnswer, setGivenAnswer] = useState<boolean>()
+
+  useEffect(() => {
+    const answers: CookieLevelProgress[] = cookies.phone_progress ?? [];
+    const _givenAnswer = answers.find(answer => answer.id === level_phone_id)
+    if (!_givenAnswer) return
+    setShowResult(true)
+    setIsAnswerCorrect(_givenAnswer.isCorrect)
+    setGivenAnswer(_givenAnswer.isCorrect)
+  }, [])
 
   if (isLoading) {
     return <Loading />
@@ -38,6 +52,8 @@ const LevelPhone: React.FC = () => {
         <p className='my-10 text-4xl font-semibold'>{data.content_message}</p>
         <div className='text-3xl font-bold text-white'>
           <AnswerButtons
+            givenAnswer={givenAnswer}
+            setGivenAnswer={setGivenAnswer}
             correctAnswer={data.answer}
             setIsAnswerCorrect={setIsAnswerCorrect}
             showResult={showResult}
