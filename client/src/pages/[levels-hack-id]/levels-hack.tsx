@@ -1,10 +1,8 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useQuery } from 'react-query';
 import { LevelsHackService } from '../../utils/api/services';
 import { useParams } from 'react-router';
 import Loading from '../../features/ui/loading';
-import { Link } from 'react-router-dom';
-import { BackButton, Navbar } from '../../features/ui';
 
 const LevelsHack: FC = () => {
   const { levels_hack_id } = useParams()
@@ -26,38 +24,36 @@ const LevelsHack: FC = () => {
   }
 
   return (
-    <div>
-      <Navbar />
-      <div className='m-4'>
-        <BackButton />
-      </div>
-      <section>
-        <div dangerouslySetInnerHTML={{ __html: data.question }} />
-        <div>
+    <div className='flex justify-center w-screen h-screen px-2 font-mono text-white bg-black' style={{ fontFamily: 'Courier New', color: '#0f0' }}>
+      <section className='w-1/2 mt-48'>
+        <div className='text-sm font-light'>
           {data.difficulty}
         </div>
-        <form onSubmit={(e) => {
+        <div className='text-xl font-medium' dangerouslySetInnerHTML={{ __html: data.question }} />
+        <form className='flex flex-col items-center justify-center mt-8' onSubmit={(e) => {
           e.preventDefault(); 
           checkAnswer();
         }}>
-          <label htmlFor="">odpowiedź</label>
-          <input value={answer} onChange={(e) => setAnswer(e.target.value)} className='border' type="text" />
-          <input type="submit" value="Zatwierdź" />
+          <label htmlFor="">Odpowiedź</label>
+          <input value={answer} onChange={(e) => setAnswer(e.target.value)} className='border text-#0f0 bg-transparent px-6 py-2 outline-none text-lg w-full xl:w-1/2' style={{ borderColor: '#0f0' }} type="text" />
+          <input disabled={isCorrect as boolean} type="submit" value="Zatwierdź" className='px-6 py-2 mt-4 text-xl font-bold text-white duration-100 border cursor-pointer hover:opacity-50' style={{ borderColor: '#0f0', color: '#0f0' }}  />
         </form>
-
-        { 
-          isCorrect ? (
-            <div>
-              <h2>
-                Poprawna odpowiedz
-              </h2>
-              <a href={`/levels-hack/${Number(levels_hack_id) + 1}`}>Nastepny poziom</a>
-              <div dangerouslySetInnerHTML={{ __html: data.lesson }} />
-            </div>
-          ) :  
-          isCorrect === null ? null :
-          <div>Nieoprawna odpowiedz</div>
-        }
+        <div className='flex items-center justify-center mt-4' >
+          { 
+            isCorrect ? (
+              <div className='w-1/2'>
+                <h2 className='text-3xl text-green-600'>
+                  Poprawna odpowiedz
+                </h2>
+                <a href={`/levels-hack/${Number(levels_hack_id) + 1}`} className='underline duration-100 hover:opacity-50'>Nastepny poziom</a>
+                <div dangerouslySetInnerHTML={{ __html: data.lesson }} />
+              </div>
+            ) :  
+            isCorrect === null ? null :
+            <div className='w-1/2 text-3xl text-red-600'>Nieoprawna odpowiedz</div>
+          }
+        </div>
+        
       </section>
     </div>
   )
