@@ -35,3 +35,9 @@ export interface LevelPhone extends Level {
   content_message: string
   explanation: string
 }
+
+export interface CookieLevelProgress {
+  id: string
+  isCorrect: boolean
+  answer: boolean
+}
