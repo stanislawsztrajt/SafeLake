@@ -18,7 +18,7 @@ const LevelPhone: React.FC = () => {
 
   const [showHint, setShowHint] = useState<boolean>(false)
   const [showResult, setShowResult] = useState<boolean>(false)
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean>(false)
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean>()
   const [givenAnswer, setGivenAnswer] = useState<boolean>()
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const LevelPhone: React.FC = () => {
     if (!_givenAnswer) return
     setShowResult(true)
     setIsAnswerCorrect(_givenAnswer.isCorrect)
-    setGivenAnswer(_givenAnswer.isCorrect)
+    setGivenAnswer(_givenAnswer.answer)
   }, [])
 
   if (isLoading) {
