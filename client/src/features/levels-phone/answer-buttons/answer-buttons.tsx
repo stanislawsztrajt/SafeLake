@@ -5,7 +5,7 @@ interface Props {
   givenAnswer: boolean | undefined
   setGivenAnswer: React.Dispatch<React.SetStateAction<boolean | undefined>>
   correctAnswer: boolean
-  setIsAnswerCorrect: React.Dispatch<React.SetStateAction<boolean>>
+  setIsAnswerCorrect: React.Dispatch<React.SetStateAction<boolean | undefined>>
   showResult: boolean
   setShowResult: React.Dispatch<React.SetStateAction<boolean>>
 }
