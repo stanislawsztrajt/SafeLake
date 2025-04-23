@@ -10,7 +10,7 @@ const client = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <CookiesProvider>
+    <CookiesProvider defaultSetOptions={{ path: '/' }}>
       <QueryClientProvider client={client}>
         <Router>
           <App />

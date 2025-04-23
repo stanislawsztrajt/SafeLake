@@ -7,7 +7,7 @@ import { AudioPlayer } from '../../features/levels-phone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import AnswerButtons from '../../features/levels-phone/answer-buttons';
-import { LEVELS_PHONE_NUMBER } from '../../utils/constants';
+import { LEVELS_PHONE_NUMBER } from '../../utils/constants/number_of_levels';
 import { useCookies } from 'react-cookie';
 import { CookieLevelProgress } from '../../utils/types/levels';
 

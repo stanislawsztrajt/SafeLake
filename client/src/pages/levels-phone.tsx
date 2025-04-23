@@ -3,7 +3,7 @@ import { BackButton, Loading, Navbar } from '../features/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { LEVELS_PHONE_NUMBER } from '../utils/constants';
+import { LEVELS_PHONE_NUMBER } from '../utils/constants/number_of_levels';
 import { useQuery } from 'react-query';
 import { LevelsPhoneService } from '../utils/api/services';
 import { DifficultyEnum } from '../utils/types/levels';
