@@ -17,8 +17,8 @@ const LevelsHack: FC = () => {
 
   useEffect(() => {
     // if user is starting defualt case
-    if (!cookies.hack_progress && levels_hack_id === '1') {
-      return
+    if (!cookies.hack_progress) {
+      navigate(`/level-hack/1`)
     }
     // if user finished levels and try to do no existing levels
     else if (cookies.hack_progress.length === LEVELS_HACK_NUMBER) {
@@ -86,7 +86,7 @@ const LevelsHack: FC = () => {
                 { LEVELS_HACK_NUMBER === Number(levels_hack_id) ? (
                   <Link to={`/level-hack-summary`} className='text-lg underline duration-100 hover:opacity-50'>Przejdź do podsumowania</Link>
                 ) : (
-                  <Link to={`/level-hack/${Number(levels_hack_id) + 1}`} className='text-lg underline duration-100 hover:opacity-50'>Następny poziom</Link>
+                  <a href={`/level-hack/${Number(levels_hack_id) + 1}`} className='text-lg underline duration-100 hover:opacity-50'>Następny poziom</a>
                 ) }
                 <div className='mt-4' dangerouslySetInnerHTML={{ __html: data.lesson }} />
               </div>
