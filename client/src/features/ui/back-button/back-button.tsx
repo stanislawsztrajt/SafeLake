@@ -3,8 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import useBackButton from './use-back-button';
 
-const BackButton: React.FC = () => {
-  const { getToPreviousLocation } = useBackButton()
+interface Props {
+  customLocation?: string
+}
+
+const BackButton: React.FC<Props> = (props) => {
+  const { getToPreviousLocation } = useBackButton(props)
 
   return (
     <button onClick={getToPreviousLocation} className='flex flex-row items-center text-sec'>

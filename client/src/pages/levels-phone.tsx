@@ -24,9 +24,6 @@ const LevelsPhone: React.FC = () => {
     const correct = answers.filter(answer => answer.isCorrect).length;
     const nextLevel = [...Array(9)].map((_, i) => i + 1).find(n => !answersIds.includes(n)) || null;
 
-    console.log(answers)
-    console.log(answers.find(answer => Number(answer.id) === 1))
-
     setAnswers(answers)
     setAnswersIds(answersIds)
     setAnswersAccuracy(Math.round((correct/answers.length)*100))
@@ -52,13 +49,13 @@ const LevelsPhone: React.FC = () => {
     <div>
       <Navbar />
       <div className='m-4'>
-        <BackButton />
+        <BackButton customLocation='/' />
       </div>
       <div className='flex flex-col items-center w-3/4 pb-20 mx-auto text-sec'>
         <p className='text-4xl font-bold'>Nauka rozpoznawania oszustw poprzez nagrania głosowe</p>
         <hr className='hr-default' />
         <Link
-          to={nextLevel ? `/level-phone/${nextLevel}` : ''}
+          to={answersIds.length < LEVELS_PHONE_NUMBER && nextLevel ? `/level-phone/${nextLevel}` : ''}
           onClick={answersIds.length < LEVELS_PHONE_NUMBER ? () => {} : resetProgress}
           className='flex flex-row items-center justify-between w-2/5 p-8 px-16 text-white transition duration-200 rounded-full bg-sec hover:shadow-inner hover:opacity-80'
         >
@@ -68,10 +65,10 @@ const LevelsPhone: React.FC = () => {
           </p>
         </Link>
         <p className='my-5 text-2xl'>Aktualny postęp kursu: {Math.round((answersIds.length/LEVELS_PHONE_NUMBER)*100)}% ({answersIds.length} z {LEVELS_PHONE_NUMBER} zadań)</p>
-        <div>
-          <button className='p-3 text-2xl text-white transition duration-200 rounded-full w-80 bg-pri hover:shadow-inner hover:opacity-85'>
+        <div className='flex flex-row'>
+          <Link to={'/levels-phone-tutorial'} className='flex items-center justify-center p-3 text-2xl text-white transition duration-200 rounded-full w-80 bg-pri hover:shadow-inner hover:opacity-85'>
             Zobacz szkolenie
-          </button>
+          </Link>
           {
             answersIds.length !== LEVELS_PHONE_NUMBER &&
               <button onClick={resetProgress} className='p-3 ml-8 text-2xl text-white transition duration-200 rounded-full bg-pri w-80 hover:shadow-inner hover:opacity-85'>

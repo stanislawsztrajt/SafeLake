@@ -1,5 +1,6 @@
 import React from 'react'
 import useAnswerButtons from './use-answer-buttons'
+import { LevelType } from '../../../utils/types/levels'
 
 interface Props {
   givenAnswer: boolean | undefined
@@ -8,6 +9,8 @@ interface Props {
   setIsAnswerCorrect: React.Dispatch<React.SetStateAction<boolean | undefined>>
   showResult: boolean
   setShowResult: React.Dispatch<React.SetStateAction<boolean>>
+  levelId: string
+  levelType: LevelType
 }
 
 const AnswerButtons: React.FC<Props> = (props) => {
