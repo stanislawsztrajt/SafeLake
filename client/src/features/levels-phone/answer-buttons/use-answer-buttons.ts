@@ -1,17 +1,18 @@
 import { useCookies } from "react-cookie"
-import { useParams } from "react-router"
+import { LevelType } from "../../../utils/types/levels"
 
 interface Props {
   correctAnswer: boolean
   setIsAnswerCorrect: React.Dispatch<React.SetStateAction<boolean | undefined>>
   setShowResult: React.Dispatch<React.SetStateAction<boolean>>
   setGivenAnswer: React.Dispatch<React.SetStateAction<boolean | undefined>>
+  levelId: string
+  levelType: LevelType
 }
 
 const useAnswerButtons = (props:Props) => {
-  const { correctAnswer, setIsAnswerCorrect, setShowResult, setGivenAnswer } = props
-  const [cookies, setCookie] = useCookies(['phone_progress'])
-  const { level_phone_id } = useParams()
+  const { correctAnswer, setIsAnswerCorrect, setShowResult, setGivenAnswer, levelId, levelType } = props
+  const [cookies, setCookie] = useCookies([`${levelType}_progress`])
 
   const checkAnswer = (givenAnswer:boolean) => {
     setGivenAnswer(givenAnswer)
@@ -21,14 +22,14 @@ const useAnswerButtons = (props:Props) => {
     setIsAnswerCorrect(isCorrect)
 
     setCookie(
-      'phone_progress',
-      cookies.phone_progress ?
+      `${levelType}_progress`,
+      cookies[`${levelType}_progress`] ?
       [
-        ...cookies.phone_progress,
-        { id: level_phone_id, isCorrect, answer: givenAnswer }
+        ...cookies[`${levelType}_progress`],
+        { id: levelId, isCorrect, answer: givenAnswer }
       ] :
       [
-        { id: level_phone_id, isCorrect, answer: givenAnswer }
+        { id: levelId, isCorrect, answer: givenAnswer }
       ]
     )
   }

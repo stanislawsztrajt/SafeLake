@@ -5,6 +5,13 @@ export enum DifficultyEnum {
 }
 export type Difficulty = `${DifficultyEnum}`
 
+export enum LevelsEnum {
+  MESSAGE = "message",
+  PHONE = "phone"
+}
+
+export type LevelType = `${LevelsEnum}`
+
 export interface Level {
   tip: string
   difficulty: Difficulty
@@ -22,9 +29,12 @@ export interface LevelHack extends Level {
 }
 
 export interface LevelMessage extends Level {
-  content: string
   answer: boolean
-  real_photo: any
+  real_photo: {
+    url: string
+  }
+  explanation: string
+  question: string
 }
 
 export interface LevelPhone extends Level {

@@ -15,7 +15,12 @@ export const LevelsHackService = {
 
 export const LevelsMessageService = {
   findOne: async (index: number | string) => {
-    const res: Response<LevelMessage> = await axios.get(import.meta.env.VITE_API_URL + `level-messages/${index}`);
+    const res: Response<LevelMessage> = await axios.get(import.meta.env.VITE_API_URL + `level-messages/${index}?populate=real_photo`);
+    return res.data
+  },
+
+  find: async () => {
+    const res: Response<LevelMessage[]> = await axios.get(import.meta.env.VITE_API_URL + `level-messages`);
     return res.data
   },
 }

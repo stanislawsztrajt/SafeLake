@@ -425,6 +425,7 @@ export interface ApiLevelMessageLevelMessage
     difficulty: Schema.Attribute.Enumeration<
       ['\u0141atwy', '\u015Aredni', 'Trudny']
     >;
+    explanation: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -432,6 +433,7 @@ export interface ApiLevelMessageLevelMessage
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.String;
     real_photo: Schema.Attribute.Media<'images'>;
     tip: Schema.Attribute.RichText;
     updatedAt: Schema.Attribute.DateTime;

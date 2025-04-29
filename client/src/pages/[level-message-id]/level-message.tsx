@@ -2,30 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { BackButton, Loading, Navbar } from '../../features/ui';
 import { useQuery } from 'react-query';
-import { LevelsPhoneService } from '../../utils/api/services';
-import { AudioPlayer } from '../../features/levels-phone';
+import { LevelsMessageService } from '../../utils/api/services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faLightbulb, faX } from '@fortawesome/free-solid-svg-icons';
 import AnswerButtons from '../../features/levels-phone/answer-buttons';
-import { LEVELS_PHONE_NUMBER } from '../../utils/constants/number_of_levels';
+import { LEVELS_MESSAGE_NUMBER } from '../../utils/constants';
 import { useCookies } from 'react-cookie';
 import { CookieLevelProgress, LevelsEnum } from '../../utils/types/levels';
 import { Link } from 'react-router-dom';
+import placeholderImage from '../../assets/img-placeholder.png'
 
-const LevelPhone: React.FC = () => {
-  const { level_phone_id } = useParams()
-  const { data, isLoading } = useQuery(`level-phone ${level_phone_id}`, () => LevelsPhoneService.findOne(Number(level_phone_id) - 1))
-  const [cookies] = useCookies(['phone_progress'])
+const LevelMessage: React.FC = () => {
+  const { level_message_id } = useParams()
+  const { data, isLoading } = useQuery(`level-message ${level_message_id}`, () => LevelsMessageService.findOne(Number(level_message_id) - 1))
+  const [cookies] = useCookies(['message_progress'])
 
   const [showHint, setShowHint] = useState<boolean>(false)
   const [showResult, setShowResult] = useState<boolean>(false)
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean>()
   const [givenAnswer, setGivenAnswer] = useState<boolean>()
   const [displaySummary, setDisplaySummary] = useState<boolean>(false)
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false)
 
   useEffect(() => {
-    const answers: CookieLevelProgress[] = cookies.phone_progress ?? [];
-    const _givenAnswer = answers.find(answer => answer.id === level_phone_id)
+    const answers: CookieLevelProgress[] = cookies.message_progress ?? [];
+    const _givenAnswer = answers.find(answer => answer.id === level_message_id)
     if (!_givenAnswer) return
     setShowResult(true)
     setIsAnswerCorrect(_givenAnswer.isCorrect)
@@ -48,13 +49,18 @@ const LevelPhone: React.FC = () => {
       </div>
       <div className='flex flex-col items-center w-3/4 pb-20 mx-auto text-sec'>
         <div className='flex flex-col items-center w-full'>
-          <p className='text-4xl font-bold'>Nauka rozpoznawania oszustw poprzez nagrania głosowe</p>
-          <p className='mt-5 text-3xl'>Poziom {level_phone_id}/{LEVELS_PHONE_NUMBER}</p>
+          <p className='text-4xl font-bold'>Nauka rozpoznawania oszustw poprzez wiadomości tekstowe</p>
+          <p className='mt-5 text-3xl'>Poziom {level_message_id}/{LEVELS_MESSAGE_NUMBER}</p>
           <hr className='hr-default' />
         </div>
         <div className={`flex flex-col items-center w-full ${displaySummary ? 'hidden' : ''}`}>
-          <AudioPlayer audio={import.meta.env.VITE_API_URL_FOR_AUDIOS + data.content_media.url} />
-          <p className='my-10 text-4xl font-semibold'>{data.content_message}</p>
+          <div className='w-full overflow-hidden border rounded-md shadow-sm md:w-1/3'>
+          <img
+            onLoad={() => setImageLoaded(true)}
+            src={imageLoaded ? import.meta.env.VITE_API_URL_FOR_AUDIOS + data.real_photo.url : placeholderImage}
+          />
+          </div>
+          <p className='my-10 text-4xl font-semibold'>{data.question}</p>
           <div className='text-3xl font-bold text-white'>
             <AnswerButtons
               givenAnswer={givenAnswer}
@@ -63,8 +69,8 @@ const LevelPhone: React.FC = () => {
               setIsAnswerCorrect={setIsAnswerCorrect}
               showResult={showResult}
               setShowResult={setShowResult}
-              levelId={`${level_phone_id}`}
-              levelType={LevelsEnum.PHONE}
+              levelId={`${level_message_id}`}
+              levelType={LevelsEnum.MESSAGE}
             />
           </div>
           <p className={`transition-opacity duration-300 font-semibold -mb-6 ${showResult ? "opacity-100 mt-6 text-4xl mb-0" : "opacity-0 invisible"}`}>
@@ -76,7 +82,7 @@ const LevelPhone: React.FC = () => {
         </div>
         <div className={`flex flex-col items-center w-full ${displaySummary ? '' : 'hidden'}`}>
           <p className='text-3xl font-semibold'>
-            Podsumowanie pytania: <span className='text-pri'>{data.content_message}</span>
+            Podsumowanie pytania: <span className='text-pri'>{data.question}</span>
           </p>
           <p className='mt-10 text-4xl'>
             Udzielona przez Ciebie odpowiedź, to:
@@ -100,7 +106,7 @@ const LevelPhone: React.FC = () => {
                 !displaySummary &&
                 <div>
                   <span className='mx-5 text-2xl'>lub</span>
-                  <Link to="/levels-phone" className='inline-block p-3 px-24 mt-8 text-2xl text-white transition duration-200 rounded-full bg-sec hover:shadow-inner hover:opacity-85'>
+                  <Link to="/levels-message" className='inline-block p-3 px-24 mt-8 text-2xl text-white transition duration-200 rounded-full bg-sec hover:shadow-inner hover:opacity-85'>
                     <FontAwesomeIcon className="mr-5" icon={faArrowLeft}/>
                     <span>Wróć do menu głównego</span>
                   </Link>
@@ -127,4 +133,4 @@ const LevelPhone: React.FC = () => {
   )
 }
 
-export default LevelPhone;
+export default LevelMessage;

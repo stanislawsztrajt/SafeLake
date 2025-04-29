@@ -1,10 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 
-const useBackButton = () => {
+interface Props {
+  customLocation?: string
+}
+
+const useBackButton = (props:Props) => {
+  const { customLocation } = props
   const navigate = useNavigate();
 
   const getToPreviousLocation = () => {
-    navigate(-1);
+    customLocation ? navigate(customLocation) : navigate(-1)
   }
 
   return {
