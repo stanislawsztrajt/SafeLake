@@ -63,6 +63,9 @@ const LevelsHack: FC = () => {
 
   return (
     <div className='flex justify-center w-screen h-screen px-2 font-mono text-white bg-black' style={{ fontFamily: 'Courier New', color: '#0f0' }}>
+      <div className='absolute top-0 left-0 mt-8 ml-8'>
+        <Link to={`/`} className='px-4 py-2 duration-100 border hover:opacity-50' style={{ borderColor: '#0f0' }}>Wróć do strony głównej</Link>
+      </div>
       <section className='w-2/3 mt-48 '>
         <div className='font-light text-center'>
           Poziom {levels_hack_id} {data.difficulty}
