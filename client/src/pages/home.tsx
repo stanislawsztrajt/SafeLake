@@ -37,7 +37,7 @@ const Home: FC = () => {
         
 
         <div>
-          <Link to={'/level-hack'}>Nauka wykrywania błędów w zabezpieczeniu aplikacji</Link>
+          <Link to={'/level-hack-intro'}>Nauka wykrywania błędów w zabezpieczeniu aplikacji</Link>
           <div>
             <img className='w-48' src={UndrawSafe} alt="" />
           </div>
