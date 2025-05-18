@@ -1,2 +1,2 @@
 export const CONNECTION_STRING_DATABASE="r01ytfTNQR2pleBv"
-//
+console.log(CONNECTION_STRING_DATABASE)
