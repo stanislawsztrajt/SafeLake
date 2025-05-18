@@ -32,8 +32,15 @@ export default factories.createCoreController('api::level-hack.level-hack', ({ s
   async findOne (ctx) {
     const { id } = ctx.params;
     const { data } = await super.find(ctx);
-    const { answer, ...levelsWithoutAnswer } = data[id];
 
-    return levelsWithoutAnswer
+    const sortedData = data.sort((a, b) => a.id - b.id);
+    const selected = sortedData.find(item => item.id == id);
+    
+    if (!selected) {
+      ctx.throw(404, 'Item not found');
+    }
+    
+    const { answer, ...levelsWithoutAnswer } = selected;
+    return levelsWithoutAnswer;
   }
 }));
