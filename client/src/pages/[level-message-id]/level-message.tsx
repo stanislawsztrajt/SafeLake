@@ -57,7 +57,7 @@ const LevelMessage: React.FC = () => {
           <div className='w-full overflow-hidden border rounded-md shadow-sm md:w-1/3'>
           <img
             onLoad={() => setImageLoaded(true)}
-            src={imageLoaded ? import.meta.env.VITE_API_URL_FOR_AUDIOS + data.real_photo.url : placeholderImage}
+            src={imageLoaded ? data.real_photo.url : placeholderImage}
           />
           </div>
           <p className='my-10 text-4xl font-semibold'>{data.question}</p>
