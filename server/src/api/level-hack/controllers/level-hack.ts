@@ -33,7 +33,7 @@ export default factories.createCoreController('api::level-hack.level-hack', ({ s
     const { id } = ctx.params;
     const { data } = await super.find(ctx);
   
-    const sortedData = [...data].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    const sortedData = [...data].sort((a, b) => a.id - b.id);
   
     const index = parseInt(id) - 1;
   
