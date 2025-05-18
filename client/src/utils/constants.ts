@@ -1,0 +1,2 @@
+export const LEVELS_PHONE_NUMBER = 9
+export const LEVELS_MESSAGE_NUMBER = 7
