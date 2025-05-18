@@ -35,7 +35,7 @@ export default factories.createCoreController('api::level-hack.level-hack', ({ s
   
     const sortedData = [...data].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
   
-    const index = parseInt(id) - 1;
+    const index = parseInt(id);
   
     if (index < 0 || index >= sortedData.length) {
       throw new Error("Invalid ID: No matching element found");
