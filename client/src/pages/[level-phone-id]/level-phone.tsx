@@ -53,7 +53,7 @@ const LevelPhone: React.FC = () => {
           <hr className='hr-default' />
         </div>
         <div className={`flex flex-col items-center w-full ${displaySummary ? 'hidden' : ''}`}>
-          <AudioPlayer audio={import.meta.env.VITE_API_URL_FOR_AUDIOS + data.content_media.url} />
+          <AudioPlayer audio={data.content_media.url} />
           <p className='my-10 text-4xl font-semibold'>{data.content_message}</p>
           <div className='text-3xl font-bold text-white'>
             <AnswerButtons
