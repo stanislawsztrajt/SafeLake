@@ -13,6 +13,7 @@ const HackIntro: FC = () => {
         </p>
         <div className='mt-10'>
           <Link to={`/level-hack/1`} className='px-4 py-2 text-xl duration-100 border hover:opacity-50' style={{ borderColor: '#0f0' }}>Przejdź do zadań</Link>
+          <Link to={`/`} className='px-4 py-2 ml-4 text-xl duration-100 border hover:opacity-50' style={{ borderColor: '#0f0' }}>Wróć do strony głównej</Link>
         </div>
       </section>
     </div>
