@@ -4,35 +4,35 @@ import { Response } from "../types/api";
 
 export const LevelsHackService = {
   findOne: async (index: number | string) => {
-    const res: Response<LevelHack> = await axios.get(import.meta.env.VITE_API_URL + `level-hacks/${index}`);
+    const res: Response<LevelHack> = await axios.get(import.meta.env.VITE_API_URL + `level-hacks/${index}`, { API_KEY: "G62dXu72eKGxllLs" });
     return res.data
   },
   checkAnswer: async (answer: string, id: string | number) => {
-    const res: { data: boolean } = await axios.post(import.meta.env.VITE_API_URL + "level-hacks", { answer, id });
+    const res: { data: boolean } = await axios.post(import.meta.env.VITE_API_URL + "level-hacks", { answer, id }, { API_KEY: "G62dXu72eKGxllLs" });
     return res.data
   }
 }
 
 export const LevelsMessageService = {
   findOne: async (index: number | string) => {
-    const res: Response<LevelMessage> = await axios.get(import.meta.env.VITE_API_URL + `level-messages/${index}?populate=real_photo`);
+    const res: Response<LevelMessage> = await axios.get(import.meta.env.VITE_API_URL + `level-messages/${index}?populate=real_photo`, { API_KEY: "G62dXu72eKGxllLs" });
     return res.data
   },
 
   find: async () => {
-    const res: Response<LevelMessage[]> = await axios.get(import.meta.env.VITE_API_URL + `level-messages`);
+    const res: Response<LevelMessage[]> = await axios.get(import.meta.env.VITE_API_URL + `level-messages`, { API_KEY: "G62dXu72eKGxllLs" });
     return res.data
   },
 }
 
 export const LevelsPhoneService = {
   findOne: async (index: number | string) => {
-    const res: Response<LevelPhone> = await axios.get(import.meta.env.VITE_API_URL + `level-phones/${index}?populate=content_media`);
+    const res: Response<LevelPhone> = await axios.get(import.meta.env.VITE_API_URL + `level-phones/${index}?populate=content_media`, { API_KEY: "G62dXu72eKGxllLs" });
     return res.data
   },
 
   find: async () => {
-    const res: Response<LevelPhone[]> = await axios.get(import.meta.env.VITE_API_URL + `level-phones`);
+    const res: Response<LevelPhone[]> = await axios.get(import.meta.env.VITE_API_URL + `level-phones`, { API_KEY: "G62dXu72eKGxllLs" });
     return res.data
   },
 }
