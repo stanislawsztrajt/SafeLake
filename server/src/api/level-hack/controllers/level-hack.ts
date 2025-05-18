@@ -32,17 +32,8 @@ export default factories.createCoreController('api::level-hack.level-hack', ({ s
   async findOne (ctx) {
     const { id } = ctx.params;
     const { data } = await super.find(ctx);
-  
-    const sortedData = [...data].sort((a, b) => a.id - b.id);
-  
-    const index = parseInt(id) - 1;
-  
-    if (index < 0 || index >= sortedData.length) {
-      throw new Error("Invalid ID: No matching element found");
-    }
-  
-    const { answer, ...levelsWithoutAnswer } = sortedData[index];
-  
-    return levelsWithoutAnswer;
+    const { answer, ...levelsWithoutAnswer } = data[id];
+
+    return levelsWithoutAnswer
   }
 }));
